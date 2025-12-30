@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For US 🤍</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<div class="bg index-bg"></div>
+
+<canvas id="fireworks"></canvas>
+
+
+<div class="overlay center">
+  <div class="overlay reveal-center">
+
+  <div class="split-layout">
+
+    <!-- LEFT IMAGE -->
+    <img
+      src="photos/1.JPG"
+      alt="Us"
+      class="split-image blur-reveal"
+    >
+
+    <!-- CENTER TEXT -->
+    <div class="split-text">
+      <p id="indexQuote" class="reveal-quote"></p>
+      <p id="indexQuote2" class="reveal-sign"></p>
+
+      <button onclick="location.href='surprise.html'">
+
+        Lets Go 💫
+      </button>
+    </div>
+
+  </div>
+
+</div>
+
+
+</div>
+
+<script src="script.js"></script>
+<script>
+const indexText1 = "Hi… Bellam 🤍";
+const indexText2 = "This year begins with us.";
+
+const penSound = new Audio("pen.mp3");
+penSound.loop = true;
+penSound.volume = 0.8;
+
+function typeHandwritten(id, text, baseSpeed, delay, callback) {
+  setTimeout(() => {
+    const el = document.getElementById(id);
+    if (!el) return;
+
+    const cursor = document.createElement("span");
+    cursor.className = "cursor";
+    el.appendChild(cursor);
+
+    let i = 0;
+
+    penSound.volume = 0.6;
+    penSound.play();
+    function typeNext() {
+      if (i < text.length) {
+        cursor.insertAdjacentText("beforebegin", text.charAt(i));
+        i++;
+
+        const variance = Math.floor(Math.random() * 60) - 30;
+        const speed = Math.max(30, baseSpeed + variance);
+
+        setTimeout(typeNext, speed);
+      } else {
+        penSound.pause();
+        cursor.remove();
+        if (callback) callback();
+      }
+    }
+
+    typeNext();
+  }, delay);
+}
+
+typeHandwritten("indexQuote", indexText1, 55, 600, () => {
+  typeHandwritten("indexQuote2", indexText2, 65, 1800);
+});
+
+
+</script>
+
+</body>
+</html>

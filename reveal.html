@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Surprise 🤍</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body class="reveal-page">
+<canvas id="fireworks"></canvas>
+<div class="reveal-bg"></div>
+
+<div class="overlay reveal-center">
+  
+<div class="reveal-box">
+  <!-- Typed Quote -->
+  <p id="quote1" class="reveal-quote"></p>
+   <!-- Photo -->
+  <img
+    src="photos/reveal.JPG"
+    alt="Our Moment"
+    class="reveal-photo blur-reveal"
+  >
+  <!-- Typed Second Quote -->
+  <p id="sign2" class="reveal-sign"></p>
+
+  <!-- Typed First Signature -->
+  <h1 id="sign1" class="reveal-sign"></h1>
+</div>
+
+</div>
+</div>
+
+<script>
+const text1 = "Hey,\nI thought this is the best thing for us to start the year.";
+const sign1 = "Anything for you JOSH 🤍";
+const sign2 = "Wait for the call 🤍";
+
+const penSound = new Audio("pen.mp3");
+penSound.loop = true;
+penSound.volume = 0.95;
+
+/* Human-like typing with speed variation */
+function typeHandwritten(id, text, baseSpeed, delay, callback) {
+  setTimeout(() => {
+    const el = document.getElementById(id);
+    const cursor = document.createElement("span");
+    cursor.className = "cursor";
+    el.appendChild(cursor);
+
+    let i = 0;
+    penSound.currentTime = 0;
+    penSound.play().catch(() => {});
+
+    function typeNext() {
+      if (i < text.length) {
+        cursor.insertAdjacentText("beforebegin", text.charAt(i));
+        i++;
+
+        // Human typing variation (±30ms)
+        const variance = Math.floor(Math.random() * 60) - 30;
+        const speed = Math.max(25, baseSpeed + variance);
+
+        setTimeout(typeNext, speed);
+      } else {
+        penSound.pause();
+        cursor.remove();
+        if (callback) callback();
+      }
+    }
+
+    typeNext();
+  }, delay);
+}
+
+/* SEQUENCE */
+typeHandwritten("quote1", text1, 55, 800, () => {
+  typeHandwritten("sign2", sign2, 65, 1000, () => {
+    typeHandwritten("sign1", sign1, 85, 500);
+  });
+});
+</script>
+
+
+
+</body>
+</html>

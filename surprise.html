@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Surprise 🤍</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="bg surprise-bg"></div>
+<canvas id="fireworks"></canvas>
+<div class="overlay reveal-center">
+
+  <div class="split-layout">
+
+    <!-- LEFT IMAGE -->
+    <img
+      src="photos/2.JPG"
+      alt="Surprise"
+      class="split-image blur-reveal"
+    >
+
+    <!-- CENTER TEXT -->
+    <div class="split-text">
+      <p id="surpriseQuote1" class="reveal-quote"></p>
+      <p id="surpriseQuote2" class="reveal-sign"></p>
+
+      <button onclick="location.href='secret.html'">
+
+        I'm ready 🤍
+      </button>
+    </div>
+
+  </div>
+
+</div>
+
+<script src="script.js"></script>
+<script>
+    function typeHandwritten(id, text, baseSpeed, delay, callback) {
+  setTimeout(() => {
+    const el = document.getElementById(id);
+    if (!el) return;
+
+    const cursor = document.createElement("span");
+    cursor.className = "cursor";
+    el.appendChild(cursor);
+
+    let i = 0;
+
+    const penSound = new Audio("pen.mp3");
+    penSound.loop = true;
+    penSound.volume = 0.9;
+    penSound.play().catch(() => {});
+
+    function typeNext() {
+      if (i < text.length) {
+        cursor.insertAdjacentText("beforebegin", text.charAt(i));
+        i++;
+
+        const variance = Math.floor(Math.random() * 60) - 30;
+        const speed = Math.max(30, baseSpeed + variance);
+
+        setTimeout(typeNext, speed);
+      } else {
+        penSound.pause();
+        cursor.remove();
+        if (callback) callback();
+      }
+    }
+
+    typeNext();
+  }, delay);
+}
+typeHandwritten(
+  "surpriseQuote1",
+  "I made something special for you…",
+  55,
+  800,
+  () => {
+    typeHandwritten(
+      "surpriseQuote2",
+      "Are you ready",
+      65,
+      1800
+    );
+  }
+);
+</script>
+</body>
+</html>

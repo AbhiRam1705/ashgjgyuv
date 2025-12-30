@@ -1,0 +1,291 @@
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  height: 100vh;
+  font-family: 'Poppins', sans-serif;
+  overflow: hidden;
+  color: white;
+}
+
+.bg {
+  position: fixed;
+  inset: 1;
+  width: 100vw;
+  height: 100vh;
+
+  background-repeat: no-repeat;
+  background-size:95%;             
+  background-position: center center;  /* keeps subject centered */
+
+  animation: kenburns 12s infinite alternate;
+  z-index: -3;
+  background-color:#1f1964
+}
+
+
+.blur { filter: blur(4px); }
+.slow { animation-duration: 45s; }
+/* =========================
+   PAGE-SPECIFIC BACKGROUNDS
+   ========================= */
+
+/* INDEX PAGE */
+
+
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.hero {
+  text-align: center;
+  max-width: 520px;
+  animation: fadeUp 1.6s ease;
+}
+
+.hero.small { max-width: 360px; }
+
+h1, h2 {
+  font-family: 'Great Vibes', cursive;
+  font-size: 44px;
+  margin-bottom: 15px;
+}
+
+.name {
+  display: block;
+  font-size: 52px;
+  color: #ffd6e7;
+  animation: glow 2s infinite alternate;
+}
+
+.tagline, .final {
+  font-size: 16px;
+  line-height: 1.9;
+  margin-bottom: 18px;
+}
+
+.letter {
+  font-family: 'Great Vibes', cursive;
+  font-size: 26px;
+  line-height: 1.8;
+  white-space: pre-wrap;
+  margin: 20px 0;
+}
+
+button {
+  padding: 12px 32px;
+  border-radius: 30px;
+  border: none;
+  background: #ffd6e7;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 10px #ffd6e7; }
+  to { text-shadow: 0 0 30px #ffd6e7; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; }
+}
+
+canvas {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+}
+/* =========================
+   REVEAL PAGE FIX (CENTER)
+   ========================= */
+
+.reveal-page {
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;
+  background: #000;
+}
+
+.reveal-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.reveal-bg {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at center, #1f1964, #1c193d);
+  z-index: -3;
+}
+
+.reveal-box {
+  max-width: 420px;
+  width: 90%;
+  text-align: center;
+  padding: 10px;
+}
+
+ /* =========================
+   REVEAL SEQUENCE
+   ========================= */
+
+/* Photo reveal */
+.blur-reveal {
+  width: 100%;
+  border-radius: 18px;
+  box-shadow: 0 0 40px rgba(255,214,231,0.35);
+  filter: blur(18px);
+  transform: scale(1.08);
+  opacity: 0;
+  animation: revealPhoto 3.5s ease forwards;
+  animation-delay: 4.6s;
+}
+/* Animations */
+@keyframes showQuote {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes revealPhoto {
+  from {
+    filter: blur(18px);
+    transform: scale(1.08);
+    opacity: 0;
+  }
+  to {
+    filter: blur(0);
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+
+/* Handwritten cursive text */
+.reveal-quote,
+.reveal-sign {
+  font-family: 'Great Vibes', cursive;
+  letter-spacing: 0.6px;
+  font-weight: 400;
+  color: #ffd6e7;
+}
+
+/* Main handwritten quote */
+.reveal-quote {
+  font-size: 30px;
+  line-height: 1.6;
+  margin-bottom: 10px;
+  min-height: 2.4em;
+}
+
+/* Signature lines */
+.reveal-sign {
+  font-size: 22px;
+  line-height: 1.4;
+  margin-bottom: 26px;
+  min-height: 1.6em;
+}
+
+/* Blinking cursor (handwritten style) */
+.cursor {
+  display: inline-block;
+  width: 5px;
+  height: 1em;
+  background: #ffd6e7;
+  margin-left: 4px;
+  animation: blink 1s infinite;
+  vertical-align: bottom;
+}
+
+@keyframes blink {
+  0%, 50%, 100% { opacity: 1; }
+  25%, 75% { opacity: 0; }
+}
+
+
+.index-bg    {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at center, #1f1964, #1c193d);
+  z-index: -3;
+
+}
+
+/* SURPRISE + SECRET */
+.surprise-bg {
+  /* animation: surpriseMemories 20s infinite ease-in-out; */
+
+ position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at center, #1f1964, #1c193d);
+  z-index: -3;}
+/* FINAL PAGE */
+.final-bg {
+  /* animation: finalMemories 20s infinite ease-in-out; */
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at center, #1f1964, #1c193d);
+  z-index: -3;
+}
+
+
+/* =========================
+   SIDE IMAGE + CENTER TEXT
+   (Index & Final only)
+   ========================= */
+
+.split-layout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  max-width: 900px;
+  width: 100%;
+  padding: 20px;
+}
+
+/* LEFT IMAGE */
+.split-image {
+  width: 40%;
+  max-width: 320px;
+  opacity: 0;
+  animation: revealPhoto 3.5s ease forwards;
+  animation-delay: 2.2s; /* AFTER text */
+}
+
+/* CENTER TEXT */
+.split-text {
+  width: 60%;
+  text-align: center;
+}
+
+/* Mobile: stack vertically */
+@media (max-width: 768px) {
+  .split-layout {
+    flex-direction: column;
+  }
+  .split-image,
+  .split-text {
+    width: 100%;
+  }
+}
